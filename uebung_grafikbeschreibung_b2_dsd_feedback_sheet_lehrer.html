@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B2 / DSD II – Grafikbeschreibung mit Feedback</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Segoe UI,Arial,sans-serif;background:#eef4ff;color:#1e293b;line-height:1.6}
+    header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;padding:52px 20px;text-align:center}
+    header h1{font-size:2.4rem;margin-bottom:8px} header p{opacity:.95;font-size:1.1rem}
+    main{max-width:1100px;margin:30px auto;padding:0 18px 60px}
+    section{background:white;border-radius:20px;padding:26px;margin-bottom:24px;box-shadow:0 8px 24px rgba(15,23,42,.09)}
+    h2{color:#1d4ed8;margin-bottom:14px} h3{color:#334155;margin:18px 0 10px}
+    .info{border-left:7px solid #2563eb}.warning{background:#fff7ed;border-left:7px solid #f97316}
+    .chart{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:18px;align-items:end}
+    .barbox{text-align:center;background:#f8fafc;border-radius:16px;padding:14px}.bar{height:160px;display:flex;align-items:end;justify-content:center;margin-bottom:10px}.fill{width:70%;border-radius:14px 14px 0 0;background:linear-gradient(180deg,#60a5fa,#1d4ed8);color:white;font-weight:800;padding-top:8px}.label{font-weight:700;color:#334155}
+    .task{border:1px solid #dbeafe;background:#f8fbff;border-radius:16px;padding:18px;margin:16px 0}.gap{width:190px;max-width:100%;padding:8px 10px;border:2px solid #cbd5e1;border-radius:10px;font-size:1rem;margin:3px}.gap:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px #bfdbfe}
+    .wordbank{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{background:#dbeafe;color:#1e40af;border-radius:999px;padding:7px 12px;font-weight:700;font-size:.9rem}
+    .mini-chart-wrap{background:#f8fafc;border:1px solid #dbeafe;border-radius:18px;padding:20px;margin:14px 0 18px}.chart-title{text-align:center;color:#1e3a8a;margin-bottom:4px}.chart-source{text-align:center;color:#64748b;font-size:.9rem;margin-top:12px}.mini-chart{height:240px;display:flex;align-items:flex-end;justify-content:center;gap:26px;border-left:3px solid #94a3b8;border-bottom:3px solid #94a3b8;padding:12px 14px 0;margin-top:18px;background:linear-gradient(180deg,#ffffff,#f8fafc)}.mini-bar-group{text-align:center;min-width:95px}.mini-bar{width:58px;margin:0 auto 8px;border-radius:12px 12px 0 0;background:linear-gradient(180deg,#60a5fa,#1d4ed8);color:white;font-weight:900;display:flex;align-items:flex-start;justify-content:center;padding-top:6px}.mini-label{font-weight:700;font-size:.9rem;color:#334155}.axis-note{text-align:center;font-size:.85rem;color:#64748b;margin-top:8px}.student-data{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}.student-data input{width:100%;padding:11px 12px;border:2px solid #cbd5e1;border-radius:12px;font-size:1rem}.send-status{font-weight:800;margin-top:10px;color:#1d4ed8}
+    table{width:100%;border-collapse:collapse;margin-top:12px} th,td{border:1px solid #cbd5e1;padding:10px;text-align:left} th{background:#dbeafe;color:#1e3a8a} td input{width:70px;padding:8px;border:2px solid #cbd5e1;border-radius:8px;text-align:center;font-weight:700}
+    textarea{width:100%;min-height:170px;border:2px solid #cbd5e1;border-radius:14px;padding:14px;font-size:1rem;resize:vertical}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}button{border:none;border-radius:999px;padding:13px 20px;font-weight:800;cursor:pointer;font-size:1rem} .primary{background:#2563eb;color:white}.secondary{background:#e2e8f0;color:#1e293b}.primary:hover{background:#1d4ed8}
+    #feedback{display:none;border-left:7px solid #16a34a}.score{font-size:2rem;font-weight:900;color:#15803d;margin:12px 0}.fbgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.fbcard{background:#f8fafc;border-radius:14px;padding:15px;border-left:5px solid #2563eb}.correct{border-color:#16a34a!important;background:#f0fdf4}.wrong{border-color:#dc2626!important;background:#fef2f2}.small{font-size:.92rem;color:#64748b}.solution{background:#f1f5f9;border-radius:12px;padding:12px;margin-top:10px;white-space:pre-wrap}footer{text-align:center;color:#64748b;padding:25px}
+    @media(max-width:750px){header h1{font-size:1.8rem}.chart{grid-template-columns:1fr 1fr}.fill{width:55%}}
+  </style>
+</head>
+<body>
+<header>
+  <h1>B2 / DSD II – Grafik beschreiben und auswerten</h1>
+  <p>Interaktive Übung mit automatischem Feedback am Ende</p>
+</header>
+<main>
+  <section class="info">
+    <h2>Idee der Übung</h2>
+    <p>Du trainierst eine vollständige Grafikbeschreibung nach fünf Schritten: <strong>Einleitung, Datenbeschreibung, Auffälligkeiten, Auswertung und Fazit</strong>.</p>
+    <p><strong>Prüfungsfokus:</strong> Im Hauptteil werden nur Daten beschrieben. Die eigene Meinung und Interpretation kommen erst in der Auswertung.</p>
+  </section>
+
+  <section>
+    <h2>Angaben zur Schülerin</h2>
+    <p>Bitte vor dem Start ausfüllen. Diese Daten werden zusammen mit dem Ergebnis an Google Sheets gesendet.</p>
+    <div class="student-data">
+      <label>Name<br><input id="studentName" type="text" placeholder="Name und Nachname"></label>
+      <label>Klasse<br><input id="studentClass" type="text" placeholder="z. B. 11. Klasse"></label>
+    </div>
+  </section>
+
+  <section>
+    <h2>Grafik: Internetnutzung nach Altersgruppen in Deutschland 2023</h2>
+    <p class="small">Quelle: Statista / Bundesministerium für Digitales, fiktive Beispieldaten</p>
+    <p><strong>Durchschnitt gesamt:</strong> 79 % | <strong>Vergleich 2013:</strong> gesamt 72 %, Altersgruppe 65+ nur 28 %</p>
+    <div class="chart">
+      <div class="barbox"><div class="bar"><div class="fill" style="height:97%">97%</div></div><div class="label">14–24 Jahre</div></div>
+      <div class="barbox"><div class="bar"><div class="fill" style="height:91%">91%</div></div><div class="label">25–44 Jahre</div></div>
+      <div class="barbox"><div class="bar"><div class="fill" style="height:79%">79%</div></div><div class="label">45–64 Jahre</div></div>
+      <div class="barbox"><div class="bar"><div class="fill" style="height:48%">48%</div></div><div class="label">65+ Jahre</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teil 1: Lückentext</h2>
+    <p>Ergänze die fehlenden Wörter mit Hilfe der Wortliste.</p>
+    <div class="wordbank">
+      <span class="chip">verdoppelt</span><span class="chip">97</span><span class="chip">Statista</span><span class="chip">benutzerfreundlicher</span><span class="chip">48</span><span class="chip">hohen</span><span class="chip">79</span><span class="chip">Videoanrufe</span><span class="chip">veranschaulicht</span><span class="chip">gestiegen</span><span class="chip">2023</span><span class="chip">über 65-Jährigen</span><span class="chip">91</span>
+    </div>
+    <div class="task">
+      <h3>1. Einleitung</h3>
+      <p>Die Grafik <input class="gap" data-answer="veranschaulicht"> die tägliche Internetnutzung verschiedener Altersgruppen in Deutschland. Die Daten stammen aus dem Jahr <input class="gap" data-answer="2023"> und wurden von <input class="gap" data-answer="Statista"> veröffentlicht.</p>
+      <h3>2. Hauptteil</h3>
+      <p>Insgesamt nutzen <input class="gap" data-answer="79"> Prozent der Bevölkerung das Internet täglich. Den höchsten Wert erreichen die 14- bis 24-Jährigen mit <input class="gap" data-answer="97"> Prozent. Die Gruppe der 25- bis 44-Jährigen liegt bei <input class="gap" data-answer="91"> Prozent. Den niedrigsten Wert verzeichnet die Gruppe der <input class="gap" data-answer="über 65-Jährigen"> mit nur <input class="gap" data-answer="48"> Prozent.</p>
+      <h3>3. Auffälligkeiten</h3>
+      <p>Besonders auffällig ist, dass die Internetnutzung bei älteren Menschen stark <input class="gap" data-answer="gestiegen"> ist. Im Vergleich zu 2013 hat sich die Nutzungsrate der Gruppe 65+ fast <input class="gap" data-answer="verdoppelt">.</p>
+      <h3>4. Auswertung</h3>
+      <p>Ein möglicher Grund hierfür ist, dass digitale Geräte heute <input class="gap" data-answer="benutzerfreundlicher"> sind. Außerdem könnte die Corona-Pandemie dazu geführt haben, dass ältere Menschen häufiger <input class="gap" data-answer="Videoanrufe"> nutzen.</p>
+      <h3>5. Fazit</h3>
+      <p>Zusammenfassend lässt sich sagen, dass die Internetnutzung in Deutschland insgesamt auf einem <input class="gap" data-answer="hohen"> Niveau liegt.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teil 2: Wortschatz zuordnen</h2>
+    <p>Schreibe den richtigen Buchstaben in die rechte Spalte.</p>
+    <table>
+      <thead><tr><th>Wort / Ausdruck</th><th>Bedeutung</th><th>Lösung</th></tr></thead>
+      <tbody>
+        <tr><td>1. veranschaulichen</td><td>A. etwas wird größer oder mehr</td><td><input data-match="B"></td></tr>
+        <tr><td>2. der Anteil</td><td>B. etwas mit Zahlen oder Bildern deutlich zeigen</td><td><input data-match="C"></td></tr>
+        <tr><td>3. steigen</td><td>C. ein Teil von einer Gesamtmenge</td><td><input data-match="A"></td></tr>
+        <tr><td>4. der Durchschnitt</td><td>D. der kleinste Wert in einer Grafik</td><td><input data-match="E"></td></tr>
+        <tr><td>5. der niedrigste Wert</td><td>E. ein Mittelwert aus mehreren Zahlen</td><td><input data-match="D"></td></tr>
+        <tr><td>6. auffällig</td><td>F. besonders sichtbar oder bemerkenswert</td><td><input data-match="F"></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Teil 3: Eigene Mini-Grafikbeschreibung</h2>
+    <p>Beschreibe die Mini-Grafik in 80–120 Wörtern. Achte auf Struktur: Einleitung, Hauptteil, Auffälligkeit, Auswertung und Fazit.</p>
+
+    <div class="mini-chart-wrap">
+      <h3 class="chart-title">Mini-Grafik: Nutzung digitaler Lernangebote in der 11. Klasse</h3>
+      <p class="small" style="text-align:center">Angaben in Prozent · Mehrfachnennungen nicht möglich</p>
+      <div class="mini-chart" aria-label="Balkendiagramm zur Nutzung digitaler Lernangebote">
+        <div class="mini-bar-group"><div class="mini-bar" style="height:162px">81%</div><div class="mini-label">Lernvideos</div></div>
+        <div class="mini-bar-group"><div class="mini-bar" style="height:136px">68%</div><div class="mini-label">Interaktive Übungen</div></div>
+        <div class="mini-bar-group"><div class="mini-bar" style="height:94px">47%</div><div class="mini-label">KI-Tools</div></div>
+        <div class="mini-bar-group"><div class="mini-bar" style="height:58px">29%</div><div class="mini-label">Digitale Karteikarten</div></div>
+      </div>
+      <div class="axis-note">Frage: „Welches digitale Lernangebot nutzt du am häufigsten?“</div>
+      <div class="chart-source">Quelle: Eigene Kursumfrage, 11. Klasse, Colegio Santa Úrsula, Juni 2026 · fiktive Beispieldaten</div>
+    </div>
+
+    <textarea id="writing" placeholder="Die Mini-Grafik veranschaulicht ..."></textarea>
+    <p class="small">Dein Text wird nicht automatisch grammatisch korrigiert, aber du bekommst Feedback zu Länge und Struktur.</p>
+  </section>
+
+  <section class="warning">
+    <h2>Abgabe und Feedback</h2>
+    <p>Klicke am Ende auf den Button. Du bekommst sofort dein Ergebnis, die Lösungen und Hinweise zur Verbesserung. Danach wird das Ergebnis automatisch an den Lehrer gesendet.</p>
+    <div class="buttons">
+      <button id="sendTeacherBtn" class="primary" onclick="checkActivity()">Ergebnis an den Lehrer senden</button>
+      <button class="secondary" onclick="resetActivity()">Neu starten</button>
+    </div>
+    <p id="sendStatus" class="send-status"></p>
+  </section>
+
+  <section id="feedback">
+    <h2>Dein Feedback</h2>
+    <div class="score" id="scoreText"></div>
+    <div class="fbgrid" id="feedbackCards"></div>
+    <h3>Musterlösung Lückentext</h3>
+    <div class="solution">Die Grafik veranschaulicht die tägliche Internetnutzung verschiedener Altersgruppen in Deutschland. Die Daten stammen aus dem Jahr 2023 und wurden von Statista veröffentlicht.
+
+Insgesamt nutzen 79 Prozent der Bevölkerung das Internet täglich. Den höchsten Wert erreichen die 14- bis 24-Jährigen mit 97 Prozent. Die Gruppe der 25- bis 44-Jährigen liegt bei 91 Prozent. Den niedrigsten Wert verzeichnet die Gruppe der über 65-Jährigen mit nur 48 Prozent.
+
+Besonders auffällig ist, dass die Internetnutzung bei älteren Menschen stark gestiegen ist. Im Vergleich zu 2013 hat sich die Nutzungsrate der Gruppe 65+ fast verdoppelt.
+
+Ein möglicher Grund hierfür ist, dass digitale Geräte heute benutzerfreundlicher sind. Außerdem könnte die Corona-Pandemie dazu geführt haben, dass ältere Menschen häufiger Videoanrufe nutzen.
+
+Zusammenfassend lässt sich sagen, dass die Internetnutzung in Deutschland insgesamt auf einem hohen Niveau liegt.</div>
+  </section>
+</main>
+<footer>Colegio Santa Úrsula · Deutschunterricht · B2 / DSD II</footer>
+<script>
+const SCRIPT_URL = "HIER_DEINE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_EINFÜGEN";
+let lastResult = null;
+
+function normalisieren(text){return (text||"").trim().toLowerCase().replace(/\s+/g," ").replace(/–/g,"-");}
+function berechneNote(percent){
+  // chilenische Skala 2.0 bis 7.0, 30% = 4.0
+  let note;
+  if(percent < 30){ note = 2 + (percent/30)*2; }
+  else { note = 4 + ((percent-30)/70)*3; }
+  return Math.max(2, Math.min(7, note)).toFixed(1);
+}
+
+async function sendToSheet(payload){
+  const status = document.getElementById('sendStatus');
+  const sendBtn = document.getElementById('sendTeacherBtn');
+  if(!SCRIPT_URL || SCRIPT_URL.includes('HIER_DEINE')){
+    status.textContent = '⚠️ Das Ergebnis wurde berechnet, aber noch nicht an den Lehrer gesendet: Bitte zuerst die Apps-Script-URL im HTML einfügen.';
+    return;
+  }
+  status.textContent = '⏳ Ergebnis wird an den Lehrer gesendet ...';
+  if(sendBtn){ sendBtn.disabled = true; sendBtn.textContent = 'Wird gesendet ...'; }
+  try{
+    await fetch(SCRIPT_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(payload)
+    });
+    status.textContent = '✅ Ergebnisse wurden erfolgreich an den Lehrer gesendet.';
+    if(sendBtn){ sendBtn.textContent = 'Ergebnisse gesendet'; }
+  }catch(err){
+    status.textContent = '⚠️ Das Ergebnis konnte nicht an den Lehrer gesendet werden. Bitte Internetverbindung oder Script-URL prüfen.';
+    if(sendBtn){ sendBtn.disabled = false; sendBtn.textContent = 'Ergebnis erneut an den Lehrer senden'; }
+  }
+}
+
+function checkActivity(){
+  let total=0, correct=0;
+  const gaps=document.querySelectorAll('[data-answer]');
+  gaps.forEach(inp=>{total++; const ok=normalisieren(inp.value)===normalisieren(inp.dataset.answer); inp.classList.toggle('correct',ok); inp.classList.toggle('wrong',!ok); if(ok) correct++;});
+  const matches=document.querySelectorAll('[data-match]');
+  matches.forEach(inp=>{total++; const ok=normalisieren(inp.value)===normalisieren(inp.dataset.match); inp.classList.toggle('correct',ok); inp.classList.toggle('wrong',!ok); if(ok) correct++;});
+  const text=document.getElementById('writing').value.trim();
+  const words=text?text.split(/\s+/).length:0;
+  const markers=['grafik','mini-grafik','veranschaulicht','zeigt','quelle','prozent','insgesamt','auffällig','grund','zusammenfassend','fazit'];
+  const used=markers.filter(m=>text.toLowerCase().includes(m)).length;
+  let writingPoints=0;
+  if(words>=80 && words<=120) writingPoints+=2; else if(words>=50 && words<=150) writingPoints+=1;
+  if(used>=5) writingPoints+=2; else if(used>=3) writingPoints+=1;
+  total+=4; correct+=writingPoints;
+  const percent=Math.round(correct/total*100);
+  const note=berechneNote(percent);
+  document.getElementById('scoreText').textContent=`${correct} von ${total} Punkten · ${percent}% · Note: ${note}`;
+  let level='';
+  if(percent>=85){level='Sehr gut! Du kannst zentrale Informationen sicher erfassen und passende Redemittel verwenden.'}
+  else if(percent>=70){level='Gut! Die Struktur ist erkennbar. Achte noch genauer auf Zahlen und Fachwortschatz.'}
+  else if(percent>=50){level='Teilweise richtig. Wiederhole besonders die Redemittel für Hauptteil, Auffälligkeiten und Auswertung.'}
+  else{level='Du solltest die Musterlösung noch einmal genau lesen und die Übung wiederholen.'}
+  const writingFeedback = words===0 ? 'Du hast noch keinen eigenen Text geschrieben.' : `Dein Text hat ca. ${words} Wörter. Gefundene Strukturwörter: ${used}.`;
+  document.getElementById('feedbackCards').innerHTML=`
+    <div class="fbcard"><strong>Gesamtergebnis</strong><br>${level}</div>
+    <div class="fbcard"><strong>Lückentext und Wortschatz</strong><br>Richtige automatische Antworten: ${correct-writingPoints} von ${total-4}.</div>
+    <div class="fbcard"><strong>Eigene Beschreibung</strong><br>${writingFeedback}</div>
+    <div class="fbcard"><strong>Tipp für DSD II</strong><br>Beschreibe im Hauptteil nur die Daten. Interpretation, Gründe und eigene Bewertung gehören in die Auswertung.</div>`;
+  document.getElementById('feedback').style.display='block';
+  document.getElementById('feedback').scrollIntoView({behavior:'smooth'});
+
+  lastResult = {
+    zeitpunkt: new Date().toLocaleString('de-DE'),
+    name: document.getElementById('studentName').value.trim(),
+    klasse: document.getElementById('studentClass').value.trim(),
+    aktivitaet: 'B2 DSD II Grafikbeschreibung mit Feedback',
+    punkte: correct,
+    gesamt: total,
+    prozent: percent,
+    note: note,
+    lueckentext_wortschatz: `${correct-writingPoints}/${total-4}`,
+    schreibpunkte: `${writingPoints}/4`,
+    wortzahl: words,
+    strukturwoerter: used,
+    feedback: level,
+    text: text
+  };
+  sendToSheet(lastResult);
+}
+function resetActivity(){
+  document.querySelectorAll('input, textarea').forEach(el=>{el.value='';el.classList.remove('correct','wrong');});
+  document.getElementById('feedback').style.display='none';
+  document.getElementById('sendStatus').textContent='';
+  const sendBtn = document.getElementById('sendTeacherBtn');
+  if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent='Ergebnis an den Lehrer senden'; }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
